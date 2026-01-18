@@ -15,7 +15,7 @@ export function ShowreelVideo() {
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
 
   return (
-    <section 
+    <section
       ref={containerRef}
       className="relative py-32 overflow-hidden bg-[#0D0D0D]"
     >
@@ -72,7 +72,7 @@ export function ShowreelVideo() {
           >
             <span className="text-white/40 text-sm tracking-[0.3em] uppercase">{t('showreel.label')}</span>
           </motion.div>
-          
+
           <h2 className="text-5xl md:text-7xl font-light mb-6 text-white">
             <motion.span
               className="inline-block"
@@ -92,7 +92,7 @@ export function ShowreelVideo() {
               {t('showreel.title')}
             </motion.span>
           </h2>
-          
+
           <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light">
             {t('showreel.description')}
           </p>
@@ -133,7 +133,6 @@ export function ShowreelVideo() {
                 src="https://player.cloudinary.com/embed/?cloud_name=dbgtxchfg&public_id=From_KlickPin_CF_Alejandro_Valencia_on_Instagram_pov_estas_cumpliendo_tu_sue%C3%B1o_Video_Video___Estudio_de_grabaci%C3%B3n_en_casa_Fotografia_analogica_Podcast_eohujr&fluid=true&controls=true&autoplay=false&muted=false&loop=true"
                 className="w-full h-full"
                 allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                allowFullScreen
                 frameBorder="0"
               />
             </div>

@@ -94,7 +94,7 @@ export function Team() {
           {/* Right Column: Scrollable Team Cards */}
           <div className="lg:w-2/3 w-full overflow-hidden">
             <motion.div
-              className="flex gap-6 overflow-x-auto pb-8 hide-scrollbar cursor-grab active:cursor-grabbing"
+              className="flex gap-6 overflow-x-auto pb-8 hide-scrollbar cursor-grab active:cursor-grabbing relative"
               ref={scrollContainerRef}
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
