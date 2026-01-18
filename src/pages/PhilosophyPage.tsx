@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { ArrowRight, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -100,9 +100,8 @@ export function PhilosophyPage() {
                 {philosophyImages.map((img, index) => (
                   <motion.div
                     key={index}
-                    className={`relative overflow-hidden rounded-2xl ${
-                      index === 0 ? 'col-span-2' : ''
-                    }`}
+                    className={`relative overflow-hidden rounded-2xl ${index === 0 ? 'col-span-2' : ''
+                      }`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -241,9 +240,8 @@ export function PhilosophyPage() {
                 {missionImages.map((img, index) => (
                   <motion.div
                     key={index}
-                    className={`relative overflow-hidden rounded-2xl ${
-                      index === 2 ? 'col-span-2' : ''
-                    }`}
+                    className={`relative overflow-hidden rounded-2xl ${index === 2 ? 'col-span-2' : ''
+                      }`}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}

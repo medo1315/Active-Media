@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Home, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -83,7 +83,7 @@ export function TeamPage() {
         <div className="absolute inset-0">
           {/* Dark Overlay */}
           <div className="absolute inset-0 bg-[#0D0D0D]/90 z-10" />
-          
+
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -287,7 +287,7 @@ export function TeamPage() {
           >
             {language === 'ar' ? 'انضم إلى فريقنا' : 'Join Our Team'}
           </motion.h3>
-          
+
           <motion.p
             className="text-white/60 text-base md:text-lg mb-10 max-w-2xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
@@ -322,7 +322,7 @@ export function TeamPage() {
               whileHover={{ x: '100%' }}
               transition={{ duration: 0.6 }}
             />
-            
+
             <span className="relative z-10">
               {language === 'ar' ? 'تواصل معنا' : 'GET IN TOUCH'}
             </span>
@@ -341,8 +341,8 @@ function TeamMember({ member, index, delay }: { member: { name: string; role: st
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: delay,
         ease: [0.22, 1, 0.36, 1]
       }}
@@ -355,7 +355,7 @@ function TeamMember({ member, index, delay }: { member: { name: string; role: st
       >
         {/* Glow Effect */}
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-white/10 to-white/5 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        
+
         {/* Image */}
         <img
           src={member.image}

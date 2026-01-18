@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const projects = [
@@ -99,8 +99,8 @@ export function Portfolio() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ 
-                duration: 0.6, 
+              transition={{
+                duration: 0.6,
                 delay: index * 0.1,
                 ease: [0.22, 1, 0.36, 1]
               }}

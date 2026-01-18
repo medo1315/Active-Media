@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Video, Camera, Palette, Sparkles, Target, TrendingUp, Users, Award } from 'lucide-react';
 
@@ -81,7 +81,7 @@ export function ServicesPage() {
           >
             {t('services.subtitle')}
           </motion.span>
-          
+
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl text-white mb-8 tracking-tight"
             initial={{ opacity: 0, scale: 0.9 }}

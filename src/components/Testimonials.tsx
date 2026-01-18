@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
@@ -191,11 +191,10 @@ export function Testimonials() {
                 <motion.button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentIndex
+                  className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
                       ? 'bg-white w-8'
                       : 'bg-white/30'
-                  }`}
+                    }`}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
                 />
@@ -218,11 +217,10 @@ export function Testimonials() {
               <motion.button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  index === currentIndex
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${index === currentIndex
                     ? 'bg-white w-8'
                     : 'bg-white/20 hover:bg-white/40'
-                }`}
+                  }`}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
               />

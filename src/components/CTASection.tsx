@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface CTASectionProps {
@@ -58,16 +58,15 @@ export function CTASection({ onOpenContact }: CTASectionProps) {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 {/* "ABOUT YOUR" with outline */}
-                <span 
+                <span
                   className="block text-transparent"
                   style={{
-                    WebkitTextStroke: '2px white',
-                    textStroke: '2px white'
+                    WebkitTextStroke: '2px white'
                   }}
                 >
                   {t('cta.aboutYour')}
                 </span>
-                
+
                 {/* "NEXT PROJECT" solid white */}
                 <span className="block text-white mt-2">
                   {t('cta.nextProject')}

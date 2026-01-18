@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { Home, ChevronRight, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -126,7 +126,7 @@ export function ClientsPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <p className="text-white/60 text-base md:text-lg tracking-wide leading-relaxed">
-                {language === 'ar' 
+                {language === 'ar'
                   ? 'العميل المستمر هو استراتيجية عمل قوية واحدة.'
                   : 'A Continued Client is One Solid Business Strategy.'
                 }
@@ -151,8 +151,8 @@ export function ClientsPage() {
                   className="relative group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ 
-                    duration: 0.5, 
+                  transition={{
+                    duration: 0.5,
                     delay: 0.4 + (index % 24) * 0.02,
                     ease: [0.22, 1, 0.36, 1]
                   }}
@@ -164,7 +164,7 @@ export function ClientsPage() {
                       <span className="text-white/50 text-[11px] md:text-xs font-medium tracking-[0.15em] text-center px-4 group-hover:text-white/80 transition-all duration-500 relative z-10">
                         {client}
                       </span>
-                      
+
                       {/* Hover Gradient Background */}
                       <motion.div
                         className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
@@ -172,7 +172,7 @@ export function ClientsPage() {
                           background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%)'
                         }}
                       />
-                      
+
                       {/* Hover Glow Effect */}
                       <motion.div
                         className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -213,7 +213,7 @@ export function ClientsPage() {
               >
                 {language === 'ar' ? 'مفتوح حالياً لـ' : 'CURRENTLY OPEN FOR'}
               </motion.p>
-              
+
               <motion.h3
                 className="text-4xl md:text-6xl font-light text-white mb-10 tracking-tight"
                 initial={{ opacity: 0, y: 20 }}
@@ -247,12 +247,12 @@ export function ClientsPage() {
                     whileHover={{ x: '100%' }}
                     transition={{ duration: 0.6 }}
                   />
-                  
+
                   <span className="relative z-10 flex items-center gap-3">
                     {language === 'ar' ? 'تواصل معنا' : 'REACH OUT'}
                     <ArrowUpRight size={18} className="group-hover:rotate-45 transition-transform duration-300" />
                   </span>
-                  
+
                   {/* Glow Effect */}
                   <motion.div
                     className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Languages, Home, Lightbulb, Building2, FolderOpen, Briefcase, Users, Mail } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/30db22424ddeca550d6f82028b6980b8e2ce95d6.png';
 import { useLanguage } from '../contexts/LanguageContext';
 
@@ -24,23 +24,32 @@ export function Header({ onOpenContact }: HeaderProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const navigate = useNavigate();
+
   const handleNavigation = (path: string, sectionId?: string) => {
     setIsMenuOpen(false);
 
     if (path === 'contact') {
-      // Legacy check, keeping for safety but logic moved to Link
+      // Legacy check
       onOpenContact();
       return;
     }
 
-    if (sectionId && location.pathname === '/') {
-      // If we're on home page, scroll to section
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
+    // Always navigate to the path first
+    navigate(path);
+
+    // If there is a sectionId, wait a tick then scroll
+    if (sectionId) {
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      // If simply navigating top to a new page, window scrollTo top might be nice
+      window.scrollTo(0, 0);
     }
-    // Navigation to other pages is handled by Link component
   };
 
   const menuItems = [

@@ -1,5 +1,5 @@
 import { Instagram, Facebook, Linkedin, Twitter, Magnet } from 'lucide-react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import logo from '../assets/30db22424ddeca550d6f82028b6980b8e2ce95d6.png';
 
 export function Footer() {

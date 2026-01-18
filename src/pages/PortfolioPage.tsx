@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
@@ -90,8 +90,8 @@ export function PortfolioPage() {
     }
   ];
 
-  const filteredProjects = selectedCategory === 'all' 
-    ? projects 
+  const filteredProjects = selectedCategory === 'all'
+    ? projects
     : projects.filter(p => p.category === selectedCategory);
 
   return (
@@ -112,7 +112,7 @@ export function PortfolioPage() {
           >
             {t('portfolio.subtitle')}
           </motion.span>
-          
+
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl text-white mb-8 tracking-tight"
             initial={{ opacity: 0, scale: 0.9 }}
@@ -145,11 +145,10 @@ export function PortfolioPage() {
             <motion.button
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
-              className={`px-8 py-3 rounded-full text-sm font-light tracking-wide transition-all duration-300 ${
-                selectedCategory === category.id
+              className={`px-8 py-3 rounded-full text-sm font-light tracking-wide transition-all duration-300 ${selectedCategory === category.id
                   ? 'bg-white text-black'
                   : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'
-              }`}
+                }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
