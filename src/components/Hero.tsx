@@ -1,226 +1,50 @@
-import { motion } from 'motion/react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
-import studioBackground from '../assets/1a926a2cd86cf9ac49817308fe17ca28e058fba7.png';
-import { useLanguage } from '../contexts/LanguageContext';
+import { motion } from 'framer-motion';
+import bgImage from '../assets/1a926a2cd86cf9ac49817308fe17ca28e058fba7.jpeg';
 
-interface HeroProps {
-  onOpenContact: () => void;
-}
-
-export function Hero({ onOpenContact }: HeroProps) {
-  const { language, t } = useLanguage();
-
-  const ArrowIcon = language === 'ar' ? ArrowLeft : ArrowRight;
-
+export function Hero() {
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Studio Background Image - واضحة جداً */}
-      <motion.div
-        className="absolute inset-0"
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <div className="absolute inset-0 bg-black">
-          <img
-            src={studioBackground}
-            alt="Active Media Studio"
-            className="w-full h-full object-cover opacity-100"
-          />
-        </div>
-        {/* Overlay خفيف جداً - بس عشان النص يبقى واضح */}
-        <div className="absolute inset-0 bg-[#0D0D0D]/40" />
-      </motion.div>
-
-      {/* Animated Background Grid - شفاف جداً */}
-      <div className="absolute inset-0 opacity-10">
-        {[...Array(20)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute w-32 h-32 border border-white/10 rounded-lg"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-            }}
-            animate={{
-              y: [0, -30, 0],
-              rotate: [0, 90, 0],
-              opacity: [0.05, 0.15, 0.05],
-            }}
-            transition={{
-              duration: 8 + i,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: i * 0.2,
-            }}
-          />
-        ))}
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0b0b0b]">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={bgImage}
+          alt="Background"
+          className="w-full h-full object-cover opacity-60"
+        />
+        {/* Gradient Overlay for better text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
       </div>
 
       {/* Content */}
-      <div className="container mx-auto px-6 py-32 relative z-10">
-        <div className="max-w-5xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.h1
-              className="text-6xl md:text-8xl lg:text-9xl font-light mb-8 tracking-tight text-white"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Visual Excellence مع تأثير نبض */}
-              <motion.span
-                className="inline-block relative"
-                initial={{ opacity: 0, scale: 0.5, y: 100 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  duration: 1.2,
-                  delay: 0.3,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
-                <motion.span
-                  className="inline-block"
-                  animate={{
-                    scale: [1, 1.02, 1],
-                    textShadow: [
-                      "0 0 20px rgba(255, 255, 255, 0.3)",
-                      "0 0 40px rgba(255, 255, 255, 0.5)",
-                      "0 0 20px rgba(255, 255, 255, 0.3)"
-                    ]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  {t('hero.title1')}
-                </motion.span>
-
-                {/* Glow effect */}
-                <motion.div
-                  className="absolute inset-0 blur-xl opacity-30"
-                  animate={{
-                    opacity: [0.2, 0.5, 0.2],
-                    scale: [0.95, 1.05, 0.95]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                  style={{
-                    background: "radial-gradient(circle, rgba(255,255,255,0.6) 0%, transparent 70%)",
-                    pointerEvents: "none"
-                  }}
-                />
-              </motion.span>
-
-              <br />
-
-              {/* Since 2018 مع تأثير نبض */}
-              <motion.span
-                className="font-normal text-white inline-block relative"
-                initial={{ opacity: 0, scale: 0.5, y: -100 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{
-                  duration: 1.2,
-                  delay: 0.6,
-                  ease: [0.22, 1, 0.36, 1]
-                }}
-              >
-                <motion.span
-                  className="inline-block"
-                  animate={{
-                    scale: [1, 1.03, 1],
-                    textShadow: [
-                      "0 0 15px rgba(255, 255, 255, 0.2)",
-                      "0 0 30px rgba(255, 255, 255, 0.4)",
-                      "0 0 15px rgba(255, 255, 255, 0.2)"
-                    ]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1.2
-                  }}
-                >
-                  {t('hero.title2')}
-                </motion.span>
-
-                {/* Glow effect */}
-                <motion.div
-                  className="absolute inset-0 blur-xl opacity-20"
-                  animate={{
-                    opacity: [0.15, 0.4, 0.15],
-                    scale: [0.9, 1.1, 0.9]
-                  }}
-                  transition={{
-                    duration: 2.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 1.2
-                  }}
-                  style={{
-                    background: "radial-gradient(circle, rgba(255,255,255,0.5) 0%, transparent 70%)",
-                    pointerEvents: "none"
-                  }}
-                />
-              </motion.span>
-            </motion.h1>
-          </motion.div>
-
-          {/* الوصف مع تأثير نبض خفيف */}
-          <motion.p
-            className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto font-light leading-relaxed relative"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 1, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.span
-              className="inline-block"
-              animate={{
-                opacity: [0.7, 1, 0.7],
-                y: [0, -2, 0]
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: 1.5
-              }}
-            >
-              {t('hero.description')}
-            </motion.span>
-          </motion.p>
-
-          <motion.button
-            onClick={onOpenContact}
-            className="group inline-flex items-center gap-3 text-lg transition-all bg-white text-black px-8 py-4 rounded-full font-medium hover:bg-gray-200"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 1.2 }}
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 20px 40px rgba(255, 255, 255, 0.2)"
-            }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <span>{t('hero.cta')}</span>
-            <motion.div
-              animate={{ x: language === 'ar' ? [-2, 2, -2] : [2, -2, 2] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-            >
-              <ArrowIcon size={20} />
-            </motion.div>
-          </motion.button>
+      <motion.div
+        className="relative z-10 text-white p-6"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+      >
+        <div style={{ lineHeight: 1, letterSpacing: "0.5px" }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 'clamp(8px, 1.5vw, 16px)', marginBottom: 6, justifyContent: 'center' }}>
+            <span style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: "clamp(36px, 8vw, 90px)" }}>FLY</span>
+            <span style={{
+              fontFamily: 'Dancing Script, cursive',
+              fontWeight: 700,
+              fontSize: "clamp(32px, 7vw, 84px)",
+              background: "linear-gradient(90deg, #f6d07a 0%, #ff6bd6 55%, #b44bff 100%)",
+              WebkitBackgroundClip: "text",
+              backgroundClip: "text",
+              color: "transparent",
+              transform: "translateY(2px)"
+            }}>Your</span>
+          </div>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 'clamp(12px, 2vw, 24px)', justifyContent: 'center' }}>
+            <span style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900, fontSize: "clamp(42px, 9vw, 110px)" }}>BRAND</span>
+            <span style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900, fontSize: "clamp(42px, 9vw, 110px)" }}>HIGH</span>
+          </div>
+          <div style={{ marginTop: 16, fontWeight: 700, fontSize: "clamp(18px, 4vw, 32px)", opacity: 0.95, letterSpacing: "4px", fontFamily: 'Poppins, sans-serif', textAlign: "center" }}>
+            WITH US.
+          </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

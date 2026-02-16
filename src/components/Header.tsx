@@ -3,7 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, Languages, Home, Lightbulb, Building2, FolderOpen, Briefcase, Users, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import logo from '../assets/30db22424ddeca550d6f82028b6980b8e2ce95d6.png';
+import { BrandingTagline } from './BrandingTagline';
 import { useLanguage } from '../contexts/LanguageContext';
+
 
 interface HeaderProps {
   onOpenContact: () => void;
@@ -359,12 +361,7 @@ export function Header({ onOpenContact }: HeaderProps) {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
               >
-                <p className="text-white/40 text-xs tracking-[0.2em] uppercase">
-                  Active Media
-                </p>
-                <p className="text-white/30 text-xs font-light">
-                  Visual Excellence Since 2018
-                </p>
+                <BrandingTagline />
               </motion.div>
             </nav>
           </motion.div>

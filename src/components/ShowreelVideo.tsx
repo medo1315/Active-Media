@@ -1,9 +1,13 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { Play } from 'lucide-react';
+import showreelVideo from '../assets/Untitled video - Made with Clipchamp.mp4';
 import { useLanguage } from '../contexts/LanguageContext';
 
 export function ShowreelVideo() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const { t } = useLanguage();
 
   const { scrollYProgress } = useScroll({
@@ -13,6 +17,17 @@ export function ShowreelVideo() {
 
   const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 0.8]);
   const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+
+  const togglePlay = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
     <section
@@ -101,7 +116,8 @@ export function ShowreelVideo() {
         {/* Video Container */}
         <motion.div
           style={{ scale, opacity }}
-          className="relative max-w-6xl mx-auto"
+          className="relative max-w-6xl mx-auto cursor-pointer"
+          onClick={togglePlay}
         >
           <motion.div
             className="relative rounded-3xl overflow-hidden shadow-2xl group"
@@ -110,11 +126,32 @@ export function ShowreelVideo() {
             viewport={{ once: true }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           >
+            {/* Play Button Overlay */}
+            <AnimatePresence>
+              {!isPlaying && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.2 }}
+                  className="absolute inset-0 z-20 flex items-center justify-center bg-black/20 backdrop-blur-[2px] transition-all duration-500 group-hover:bg-black/40"
+                >
+                  <motion.div
+                    className="w-24 h-24 md:w-32 md:h-32 rounded-full flex items-center justify-center bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl relative"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <div className="absolute inset-0 rounded-full bg-white/5 animate-ping opacity-20" />
+                    <Play className="w-10 h-10 md:w-14 md:h-14 text-white fill-white ml-1.5" />
+                  </motion.div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
             {/* Glowing Border Effect */}
             <motion.div
-              className="absolute inset-0 rounded-3xl pointer-events-none z-10"
+              className="absolute inset-0 rounded-3xl pointer-events-none z-10 border border-white/10"
               animate={{
-                boxShadow: [
+                boxShadow: isPlaying ? "none" : [
                   "0 0 0 1px rgba(255, 255, 255, 0.1)",
                   "0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 40px rgba(255, 255, 255, 0.1)",
                   "0 0 0 1px rgba(255, 255, 255, 0.1)"
@@ -127,14 +164,20 @@ export function ShowreelVideo() {
               }}
             />
 
-            {/* Cloudinary Video Player */}
-            <div className="relative w-full aspect-video bg-black">
-              <iframe
-                src="https://player.cloudinary.com/embed/?cloud_name=dbgtxchfg&public_id=From_KlickPin_CF_Alejandro_Valencia_on_Instagram_pov_estas_cumpliendo_tu_sue%C3%B1o_Video_Video___Estudio_de_grabaci%C3%B3n_en_casa_Fotografia_analogica_Podcast_eohujr&fluid=true&controls=true&autoplay=false&muted=false&loop=true"
-                className="w-full h-full"
-                allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
-                frameBorder="0"
-              />
+            {/* Local Video Player */}
+            <div className="relative w-full aspect-video">
+              <video
+                ref={videoRef}
+                className="w-full h-full object-cover"
+                playsInline
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)}
+              >
+                <source src={showreelVideo} type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+
+              <div className={`absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none transition-opacity duration-700 ${isPlaying ? 'opacity-0' : 'opacity-100'}`} />
             </div>
           </motion.div>
 

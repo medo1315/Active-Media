@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Facebook, Instagram, Linkedin, Twitter, Youtube, MapPin, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 
 export function ContactPage() {
     return (

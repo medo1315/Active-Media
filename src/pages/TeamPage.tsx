@@ -190,7 +190,7 @@ export function TeamPage() {
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             {teamData.leadership.map((member, index) => (
-              <TeamMember key={index} member={member} index={index} delay={0.9 + index * 0.1} />
+              <TeamMember key={index} member={member} delay={0.1 + index * 0.05} />
             ))}
           </motion.div>
         </div>
@@ -221,7 +221,7 @@ export function TeamPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
             {teamData.creativeTeam.map((member, index) => (
-              <TeamMember key={index} member={member} index={index} delay={0.1 + index * 0.05} />
+              <TeamMember key={index} member={member} delay={0.1 + index * 0.05} />
             ))}
           </div>
         </div>
@@ -242,7 +242,7 @@ export function TeamPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-8 md:gap-12 max-w-6xl mx-auto">
             {teamData.production.map((member, index) => (
-              <TeamMember key={index} member={member} index={index} delay={0.1 + index * 0.05} />
+              <TeamMember key={index} member={member} delay={0.1 + index * 0.05} />
             ))}
           </div>
         </div>
@@ -263,7 +263,7 @@ export function TeamPage() {
 
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-8 md:gap-12 max-w-4xl mx-auto">
             {teamData.agencyTeam.map((member, index) => (
-              <TeamMember key={index} member={member} index={index} delay={0.1 + index * 0.05} />
+              <TeamMember key={index} member={member} delay={0.1 + index * 0.05} />
             ))}
           </div>
         </div>
@@ -334,7 +334,7 @@ export function TeamPage() {
 }
 
 // Team Member Component
-function TeamMember({ member, index, delay }: { member: { name: string; role: string; image: string }, index: number, delay: number }) {
+function TeamMember({ member, delay }: { member: { name: string; role: string; image: string }, delay: number }) {
   return (
     <motion.div
       className="group text-center"

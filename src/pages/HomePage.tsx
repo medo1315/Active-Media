@@ -1,3 +1,4 @@
+
 import { Hero } from '../components/Hero';
 import { ShowreelVideo } from '../components/ShowreelVideo';
 import { Services } from '../components/Services';
@@ -14,7 +15,7 @@ interface HomePageProps {
 export function HomePage({ onOpenContact }: HomePageProps) {
   return (
     <>
-      <Hero onOpenContact={onOpenContact} />
+      <Hero />
       <ShowreelVideo />
       <Services />
       <Portfolio />

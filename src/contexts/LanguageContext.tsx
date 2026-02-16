@@ -8,7 +8,7 @@ interface LanguageContextType {
   t: (key: string) => string;
 }
 
-const translations = {
+const translations: Record<'ar' | 'en', Record<string, string>> = {
   ar: {
     // Navigation
     'nav.home': 'Active Media',
@@ -18,13 +18,13 @@ const translations = {
     'nav.services': 'Services',
     'nav.team': 'Team',
     'nav.contact': 'Contact Us',
-    
+
     // Hero Section
-    'hero.title1': 'Visual Excellence',
+    'hero.title1': '',
     'hero.title2': 'Since 2018',
-    'hero.description': 'وكالة إنتاج متخصصة في صناعة تجارب بصرية راقية',
-    'hero.cta': 'ابدأ مشروعك',
-    
+    'hero.description': '',
+    'hero.cta': '',
+
     // Showreel Section
     'showreel.label': 'Showreel',
     'showreel.title': 'رحلتنا المرئية',
@@ -33,13 +33,13 @@ const translations = {
     'showreel.stat2': 'عميل سعيد',
     'showreel.stat3': 'سنوات خبرة',
     'showreel.stat4': 'جائزة دولية',
-    
+
     // Services Section
     'services.label': 'خدماتنا',
     'services.title': 'SERVICES',
     'services.subtitle': 'ALL INCLUSIVE ADVERTISING SERVICES',
     'services.description': 'نقدم مجموعة متكاملة من خدمات الإنتاج المرئي بأعلى معايير الجودة',
-    
+
     // Service Items
     'services.branding': 'الهوية البصرية',
     'services.brandingDesc': 'تصميم هوية بصرية مميزة لعلامتك التجارية',
@@ -54,7 +54,7 @@ const translations = {
     'services.industrial': 'Industrial Documentaries',
     'services.packaging': 'Packaging Design Services',
     'services.events': 'Events Covering Video Production',
-    
+
     'services.items.video.title': 'إنتاج الفيديو',
     'services.items.video.description': 'إنتاج فيديو احترافي من البداية للنهاية مع تركيز على الجودة والإبداع',
     'services.items.photography.title': 'التصوير الفوتوغرافي',
@@ -77,7 +77,7 @@ const translations = {
     'services.cta.title': 'هل أنت مستعد لبدء مشروعك؟',
     'services.cta.description': 'دعنا نحول رؤيتك إلى واقع مذهل',
     'services.cta.button': 'تواصل معنا',
-    
+
     // Portfolio Section
     'portfolio.label': 'أعمالنا',
     'portfolio.title': 'PROJECTS',
@@ -97,7 +97,7 @@ const translations = {
     'portfolio.stats.clients': 'عميل',
     'portfolio.stats.awards': 'جائزة',
     'portfolio.stats.years': 'سنوات خبرة',
-    
+
     // About Section
     'about.label': 'من نحن',
     'about.title': 'Active Media',
@@ -113,7 +113,7 @@ const translations = {
     'about.stat1': 'مشروع منجز',
     'about.stat2': 'عميل راضٍ',
     'about.stat3': 'سنوات خبرة',
-    
+
     // Philosophy Section
     'philosophy.label': 'فلسفتنا',
     'philosophy.title': 'قوة الجذب',
@@ -125,40 +125,48 @@ const translations = {
     'philosophy.missionIntro': 'مهمتنا هي الوصول إلى كل عميل في لحظة مناسبة من إبداعه، رسالة واضحة وصادقة ومليئة بالإبداع.',
     'philosophy.missionDescription': 'تتمثل مهمتنا في الوصول إلى كل عميل بطريقة تعبر عن التفكير في ثقافتهم، وهدفهم. نحن نجلبهم لنا مع الفن الأصلي والثقافة، وهذا ما نفعله بطريقة بسيطة تحقق الإبداع المطلق لما يمثلونه.',
     'philosophy.missionGoal': 'نسعى لتحقيق التميز في كل مشروع، ونجعل علامتك التجارية تبرز وسط المنافسة من خلال محتوى بصري استثنائي يحكي قصتك بأفضل شكل ممكن.',
-    
+
     // Clients Section
     'clients.label': 'شركاؤنا',
     'clients.title': 'CLIENTS',
     'clients.subtitle': 'OUR HAPPY & SATISFIED',
     'clients.description': 'نتعاون مع علامات تجارية رائدة لتقديم محتوى بصري استثنائي',
     'clients.more': 'وأكثر من 200+ علامة تجارية أخرى',
-    
+
     // Testimonials Section
     'testimonials.label': 'آراء العملاء',
     'testimonials.title': 'TESTIMONIALS',
     'testimonials.subtitle': 'ENDORSEMENT TWEETS',
     'testimonials.description': 'ماذا يقول عملاؤنا عن تجربتهم معنا',
-    
+
     // Team Section
     'team.label': 'OUR CREATIVE',
     'team.title': 'TEAM',
     'team.description': 'فريق مبدع من المتخصصين في الإنتاج البصري والتسويق',
-    'team.member1.name': 'Mohammed Tarek',
-    'team.member1.role': 'Media Specialist',
-    'team.member2.name': 'Mariem Elawady',
-    'team.member2.role': 'Marketing Team',
-    'team.member3.name': 'Ahmed Issa',
-    'team.member3.role': 'Creative Team',
-    'team.member4.name': 'Mohamed Ashraf',
-    'team.member4.role': 'Creative Team',
-    
+    'team.member1.name': 'Mohamed Ashraf',
+    'team.member1.role': 'Creative Team',
+    'team.member2.name': 'Rawan Mosad',
+    'team.member2.role': 'Moderator',
+    'team.member3.name': 'Abdullah Nabil',
+    'team.member3.role': 'Media Buyer',
+    'team.member4.name': 'Ali Omar',
+    'team.member4.role': 'Development Team',
+    'team.member5.name': 'Sarah Ahmed',
+    'team.member5.role': 'UI/UX Designer',
+    'team.member6.name': 'Youssef Ali',
+    'team.member6.role': 'Video Editor',
+    'team.member7.name': 'Mona Kamel',
+    'team.member7.role': 'Content Creator',
+    'team.member8.name': 'Omar Reda',
+    'team.member8.role': 'Project Manager',
+
     // CTA Section
     'cta.subtitle': 'LET\'S TALK',
     'cta.titlePrefix': 'ABOUT YOUR',
     'cta.titleHighlight': 'NEXT PROJECT',
     'cta.button': 'Get In Touch',
     'cta.viewWork': 'استعرض أعمالنا',
-    
+
     // Stats Section
     'stats.clients': 'Clients',
     'stats.clientsCount': '118',
@@ -168,7 +176,7 @@ const translations = {
     'stats.yearsCount': '10',
     'stats.services': 'Services',
     'stats.servicesCount': '13',
-    
+
     // Blog Section
     'blog.label': 'المدونة',
     'blog.title': 'رؤى ومقالات',
@@ -176,7 +184,7 @@ const translations = {
     'blog.readMore': 'اقرأ المزيد',
     'blog.viewAll': 'عرض جميع المقالات',
     'blog.minutes': 'دقائق',
-    
+
     // Contact Section
     'contact.label': 'تواصل معنا',
     'contact.title': 'لنبدأ معاً',
@@ -192,7 +200,7 @@ const translations = {
     'contact.messagePlaceholder': 'أبرنا عن مشروعك...',
     'contact.success': 'تم إرسال رسالتك بنجاح!',
     'contact.error': 'حدث خطأ. يرجى المحاولة مرة أخرى.',
-    
+
     // Footer
     'footer.tagline': 'قوة الجذب',
     'footer.description': 'مثل المغناطيس، نجذب الجمهور من خلال محتوى استثنائي ونبني علاقات مستدامة من خلال التفاعل المستمر',
@@ -211,13 +219,13 @@ const translations = {
     'nav.services': 'Services',
     'nav.team': 'Team',
     'nav.contact': 'Contact Us',
-    
+
     // Hero Section
-    'hero.title1': 'Visual Excellence',
+    'hero.title1': '',
     'hero.title2': 'Since 2018',
-    'hero.description': 'A production agency specialized in creating premium visual experiences',
-    'hero.cta': 'Start Your Project',
-    
+    'hero.description': '',
+    'hero.cta': '',
+
     // Showreel Section
     'showreel.label': 'Showreel',
     'showreel.title': 'Our Visual Journey',
@@ -226,13 +234,13 @@ const translations = {
     'showreel.stat2': 'Happy Clients',
     'showreel.stat3': 'Years of Experience',
     'showreel.stat4': 'International Awards',
-    
+
     // Services Section
     'services.label': 'Our Services',
     'services.title': 'SERVICES',
     'services.subtitle': 'ALL INCLUSIVE ADVERTISING SERVICES',
     'services.description': 'We offer a comprehensive range of visual production services with the highest quality standards',
-    
+
     // Service Items
     'services.branding': 'Branding & Logo Design',
     'services.brandingDesc': 'Designing a distinctive visual identity for your brand',
@@ -247,7 +255,7 @@ const translations = {
     'services.industrial': 'Industrial Documentaries',
     'services.packaging': 'Packaging Design Services',
     'services.events': 'Events Covering Video Production',
-    
+
     'services.items.video.title': 'Media Production',
     'services.items.video.description': 'Complete video production from start to finish for commercials, corporate films, and promotional content with a focus on storytelling and visual quality',
     'services.items.photography.title': 'Professional Photography',
@@ -270,7 +278,7 @@ const translations = {
     'services.cta.title': 'Are You Ready to Start Your Project?',
     'services.cta.description': 'Let\'s turn your vision into a stunning reality',
     'services.cta.button': 'Contact Us',
-    
+
     // Portfolio Section
     'portfolio.label': 'Our Work',
     'portfolio.title': 'PROJECTS',
@@ -290,7 +298,7 @@ const translations = {
     'portfolio.stats.clients': 'Client',
     'portfolio.stats.awards': 'Award',
     'portfolio.stats.years': 'Years of Experience',
-    
+
     // About Section
     'about.label': 'About Us',
     'about.title': 'Active Media',
@@ -306,7 +314,7 @@ const translations = {
     'about.stat1': 'Completed Projects',
     'about.stat2': 'Satisfied Clients',
     'about.stat3': 'Years of Experience',
-    
+
     // Philosophy Section
     'philosophy.label': 'Our Philosophy',
     'philosophy.title': 'Power of Attraction',
@@ -318,40 +326,48 @@ const translations = {
     'philosophy.missionIntro': 'Our mission is to reach every client at the right moment of their creativity, with a clear, honest, and creative message.',
     'philosophy.missionDescription': 'Our mission is to reach every client in a way that reflects their culture and goals. We bring them to us with original art and culture, and we do it in a simple way that achieves absolute creativity for what they represent.',
     'philosophy.missionGoal': 'We strive to achieve excellence in every project, and make your brand stand out in the competition through exceptional visual content that tells your story in the best possible way.',
-    
+
     // Clients Section
     'clients.label': 'Our Partners',
     'clients.title': 'CLIENTS',
     'clients.subtitle': 'OUR HAPPY & SATISFIED',
     'clients.description': 'We collaborate with leading brands to deliver exceptional visual content',
     'clients.more': 'And more than 200+ other brands',
-    
+
     // Testimonials Section
     'testimonials.label': 'Client Testimonials',
     'testimonials.title': 'TESTIMONIALS',
     'testimonials.subtitle': 'ENDORSEMENT TWEETS',
     'testimonials.description': 'What our clients say about their experience with us',
-    
+
     // Team Section
     'team.label': 'OUR CREATIVE',
     'team.title': 'TEAM',
     'team.description': 'A creative team of professionals in visual production and marketing',
-    'team.member1.name': 'Mohammed Tarek',
-    'team.member1.role': 'Media Specialist',
-    'team.member2.name': 'Mariem Elawady',
-    'team.member2.role': 'Marketing Team',
-    'team.member3.name': 'Ahmed Issa',
-    'team.member3.role': 'Creative Team',
-    'team.member4.name': 'Mohamed Ashraf',
-    'team.member4.role': 'Creative Team',
-    
+    'team.member1.name': 'Mohamed Ashraf',
+    'team.member1.role': 'Creative Team',
+    'team.member2.name': 'Rawan Mosad',
+    'team.member2.role': 'Moderator',
+    'team.member3.name': 'Abdullah Nabil',
+    'team.member3.role': 'Media Buyer',
+    'team.member4.name': 'Ali Omar',
+    'team.member4.role': 'Development Team',
+    'team.member5.name': 'Sarah Ahmed',
+    'team.member5.role': 'UI/UX Designer',
+    'team.member6.name': 'Youssef Ali',
+    'team.member6.role': 'Video Editor',
+    'team.member7.name': 'Mona Kamel',
+    'team.member7.role': 'Content Creator',
+    'team.member8.name': 'Omar Reda',
+    'team.member8.role': 'Project Manager',
+
     // CTA Section
     'cta.subtitle': 'LET\'S TALK',
     'cta.titlePrefix': 'ABOUT YOUR',
     'cta.titleHighlight': 'NEXT PROJECT',
     'cta.button': 'Get In Touch',
     'cta.viewWork': 'View Our Work',
-    
+
     // Stats Section
     'stats.clients': 'Clients',
     'stats.clientsCount': '118',
@@ -361,7 +377,7 @@ const translations = {
     'stats.yearsCount': '10',
     'stats.services': 'Services',
     'stats.servicesCount': '13',
-    
+
     // Blog Section
     'blog.label': 'Blog',
     'blog.title': 'Latest Articles',
@@ -369,7 +385,7 @@ const translations = {
     'blog.readMore': 'Read More',
     'blog.viewAll': 'View All Articles',
     'blog.minutes': 'minutes',
-    
+
     // Contact Section
     'contact.label': 'Contact Us',
     'contact.title': 'Let\'s Start Together',
@@ -385,7 +401,7 @@ const translations = {
     'contact.messagePlaceholder': 'Tell us about your project...',
     'contact.success': 'Your message has been sent successfully!',
     'contact.error': 'An error occurred. Please try again.',
-    
+
     // Footer
     'footer.tagline': 'Power of Attraction',
     'footer.description': 'Like a magnet, we attract audiences through exceptional content and build sustainable relationships through continuous engagement',

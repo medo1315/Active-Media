@@ -32,11 +32,9 @@ const clients = [
 ];
 
 export function ClientsPage() {
-  const { language, t } = useLanguage();
+  const { language } = useLanguage();
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] pt-20">

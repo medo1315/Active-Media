@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
-import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+
 import { Play, ExternalLink } from 'lucide-react';
 
 export function PortfolioPage() {
@@ -146,8 +146,8 @@ export function PortfolioPage() {
               key={category.id}
               onClick={() => setSelectedCategory(category.id)}
               className={`px-8 py-3 rounded-full text-sm font-light tracking-wide transition-all duration-300 ${selectedCategory === category.id
-                  ? 'bg-white text-black'
-                  : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'
+                ? 'bg-white text-black'
+                : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white border border-white/10'
                 }`}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

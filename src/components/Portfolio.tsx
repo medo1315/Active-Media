@@ -1,13 +1,16 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const projects = [
   {
+    id: 'stone-africa',
     title: 'Mega Trade Industrial Event Video Stone Africa',
     image: 'https://images.unsplash.com/photo-1762028892701-692dc360db08?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxpbmR1c3RyaWFsJTIwZXhoaWJpdGlvbiUyMGJvb3RofGVufDF8fHx8MTc2ODczOTI0Mnww&ixlib=rb-4.1.0&q=80&w=1080',
     tags: ['Industrial', 'Video Production']
   },
   {
+    id: 'al-nas',
     title: 'Al Nas Hospital Website Design & Development',
     image: 'https://images.unsplash.com/photo-1654762930571-dcf2ebc11542?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxob3NwaXRhbCUyMG1lZGljYWwlMjB3ZWJzaXRlfGVufDF8fHx8MTc2ODczOTI0M3ww&ixlib=rb-4.1.0&q=80&w=1080',
     tags: ['Medical']
@@ -93,70 +96,71 @@ export function Portfolio() {
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
-              className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              whileHover={{ y: -10 }}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-              </div>
-
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500" />
-
-              {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-end p-8">
-                {/* Project Title */}
-                <motion.h3
-                  className="text-white text-xl md:text-2xl font-medium leading-tight mb-4"
-                  initial={{ y: 10, opacity: 0.8 }}
-                  whileHover={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {project.title}
-                </motion.h3>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tags.map((tag, tagIndex) => (
-                    <span
-                      key={tagIndex}
-                      className="px-3 py-1 text-xs font-medium bg-[#4A5568] text-white rounded-full"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+            <Link key={index} to={`/portfolio/${project.id || 'stone-africa'}`} className="block">
+              <motion.div
+                className="group relative aspect-[4/3] overflow-hidden cursor-pointer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.1,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ y: -10 }}
+              >
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
                 </div>
 
-                {/* Read More Button */}
-                <motion.button
-                  className="text-white text-sm tracking-[0.2em] uppercase font-light opacity-70 group-hover:opacity-100 transition-opacity text-left"
-                  whileHover={{ x: 5 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {t('portfolio.readMore')}
-                </motion.button>
-              </div>
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500" />
 
-              {/* Hover Border */}
-              <motion.div
-                className="absolute inset-0 border-2 border-white/0 pointer-events-none transition-colors duration-300 group-hover:border-white/10"
-              />
-            </motion.div>
+                {/* Content */}
+                <div className="absolute inset-0 flex flex-col justify-end p-8">
+                  {/* Project Title */}
+                  <motion.h3
+                    className="text-white text-xl md:text-2xl font-medium leading-tight mb-4"
+                    initial={{ y: 10, opacity: 0.8 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {project.title}
+                  </motion.h3>
+
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.tags.map((tag, tagIndex) => (
+                      <span
+                        key={tagIndex}
+                        className="px-3 py-1 text-xs font-medium bg-[#4A5568] text-white rounded-full"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Read More Button */}
+                  <motion.button
+                    className="text-white text-sm tracking-[0.2em] uppercase font-light opacity-70 group-hover:opacity-100 transition-opacity text-left"
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {t('portfolio.readMore')}
+                  </motion.button>
+                </div>
+
+                {/* Hover Border */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-white/0 pointer-events-none transition-colors duration-300 group-hover:border-white/10"
+                />
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>

@@ -1,4 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Great+Vibes&family=Montserrat:wght@100..900&display=swap');
 @import "tailwindcss";
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: local('Gotham Pro'), local('GothamPro');
+    /* Fallback to Montserrat if not locally available */
+}
+
+@theme {
+    --font-sans: 'Gotham Pro', 'Montserrat', sans-serif;
+}
+
 
 @theme {
     --color-border: var(--border);

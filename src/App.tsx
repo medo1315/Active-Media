@@ -10,6 +10,8 @@ import { PhilosophyPage } from './pages/PhilosophyPage';
 import { ClientsPage } from './pages/ClientsPage';
 import { TeamPage } from './pages/TeamPage';
 import { ContactPage } from './pages/ContactPage';
+import { ServiceDetailPage } from './pages/ServiceDetailPage';
+import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { Toaster } from 'sonner';
@@ -28,7 +30,9 @@ function AppContent() {
         <Route path="/" element={<HomePage onOpenContact={() => setIsContactModalOpen(true)} />} />
         <Route path="/philosophy" element={<PhilosophyPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/services/:id" element={<ServiceDetailPage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
+        <Route path="/portfolio/:id" element={<ProjectDetailPage />} />
         <Route path="/clients" element={<ClientsPage />} />
         <Route path="/team" element={<TeamPage />} />
         <Route path="/contact" element={<ContactPage />} />

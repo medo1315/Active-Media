@@ -1,21 +1,25 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const services = [
   {
     title: 'Branding & Logo Design',
     image: 'https://images.unsplash.com/photo-1640975972263-1f73398e943b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxicmFuZGluZyUyMGxvZ28lMjBkZXNpZ258ZW58MXx8fHwxNzY4NjQ3NDk5fDA&ixlib=rb-4.1.0&q=80&w=1080',
-    key: 'services.branding'
+    key: 'services.branding',
+    id: 'branding'
   },
   {
     title: 'Catalogs & Profiles',
     image: 'https://images.unsplash.com/photo-1636247499180-13285c86be9b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjYXRhbG9nJTIwcG9ydGZvbGlvJTIwZGVzaWdufGVufDF8fHx8MTc2ODczODk5N3ww&ixlib=rb-4.1.0&q=80&w=1080',
-    key: 'services.catalogs'
+    key: 'services.catalogs',
+    id: 'catalogs'
   },
   {
     title: 'Animation & Motion Graphics',
     image: 'https://images.unsplash.com/photo-1740174459694-4da6669ef2b0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3Rpb24lMjBncmFwaGljcyUyMGFuaW1hdGlvbnxlbnwxfHx8fDE3Njg2ODI4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    key: 'services.animation'
+    key: 'services.animation',
+    id: 'animation'
   },
   {
     title: 'Web & Mobile Application',
@@ -136,53 +140,54 @@ export function Services() {
         {/* Services Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {services.map((service, index) => (
-            <motion.div
-              key={index}
-              className="group relative aspect-[4/3] overflow-hidden rounded-lg cursor-pointer"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.05,
-                ease: [0.22, 1, 0.36, 1]
-              }}
-              whileHover={{ scale: 1.02 }}
-            >
-              {/* Background Image */}
-              <div className="absolute inset-0">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            <Link key={index} to={`/services/${service.id || 'branding'}`} className="block">
+              <motion.div
+                className="group relative aspect-[4/3] overflow-hidden rounded-lg cursor-pointer"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{
+                  duration: 0.6,
+                  delay: index * 0.05,
+                  ease: [0.22, 1, 0.36, 1]
+                }}
+                whileHover={{ scale: 1.02 }}
+              >
+                {/* Background Image */}
+                <div className="absolute inset-0">
+                  <img
+                    src={service.image}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 transition-opacity duration-500 group-hover:from-black/80 group-hover:via-black/40" />
+
+                {/* Content */}
+                <div className="absolute inset-0 flex items-end p-6">
+                  <motion.h3
+                    className="text-white text-xl md:text-2xl font-medium leading-tight"
+                    initial={{ y: 10, opacity: 0.8 }}
+                    whileHover={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {t(service.key)}
+                  </motion.h3>
+                </div>
+
+                {/* Hover Border Effect */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-white/0 rounded-lg pointer-events-none transition-colors duration-300 group-hover:border-white/20"
                 />
-              </div>
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 transition-opacity duration-500 group-hover:from-black/80 group-hover:via-black/40" />
-
-              {/* Content */}
-              <div className="absolute inset-0 flex items-end p-6">
-                <motion.h3
-                  className="text-white text-xl md:text-2xl font-medium leading-tight"
-                  initial={{ y: 10, opacity: 0.8 }}
-                  whileHover={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  {t(service.key)}
-                </motion.h3>
-              </div>
-
-              {/* Hover Border Effect */}
-              <motion.div
-                className="absolute inset-0 border-2 border-white/0 rounded-lg pointer-events-none transition-colors duration-300 group-hover:border-white/20"
-              />
-
-              {/* Corner Accent */}
-              <motion.div
-                className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-white/0 rounded-tr-lg transition-all duration-300 group-hover:border-white/40 group-hover:w-16 group-hover:h-16"
-              />
-            </motion.div>
+                {/* Corner Accent */}
+                <motion.div
+                  className="absolute top-4 right-4 w-12 h-12 border-t-2 border-r-2 border-white/0 rounded-tr-lg transition-all duration-300 group-hover:border-white/40 group-hover:w-16 group-hover:h-16"
+                />
+              </motion.div>
+            </Link>
           ))}
         </div>
       </div>
