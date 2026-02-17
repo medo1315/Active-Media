@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ChevronLeft, CheckCircle2, ArrowRight } from 'lucide-react';
@@ -7,8 +7,9 @@ const servicesData: Record<string, any> = {
     'branding': {
         titleKey: 'services.branding',
         image: 'https://images.unsplash.com/photo-1640975972263-1f73398e943b?auto=format&fit=crop&q=80&w=1200',
-        fullDesc: 'We craft unique brand identities that resonate with your target audience. From logo design to complete brand guidelines, we ensure your business stands out in a crowded market.',
-        features: ['Logo Design', 'Brand Strategy', 'Typography & Color Palette', 'Visual Identity Systems', 'Brand Guidelines'],
+        descKey: 'services.brandingDesc',
+        featuresCount: 5,
+        featuresPrefix: 'services.branding.f',
         gallery: [
             'https://images.unsplash.com/photo-1545235617-9465d2a55698?auto=format&fit=crop&q=80&w=800',
             'https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&q=80&w=800'
@@ -17,8 +18,9 @@ const servicesData: Record<string, any> = {
     'catalogs': {
         titleKey: 'services.catalogs',
         image: 'https://images.unsplash.com/photo-1636247499180-13285c86be9b?auto=format&fit=crop&q=80&w=1200',
-        fullDesc: 'Professional catalog and company profile design that tells your story effectively. We combine high-quality layouts with compelling visual storytelling.',
-        features: ['Company Profiles', 'Product Catalogs', 'Annual Reports', 'Sales Pitch Decks', 'Digital Magazines'],
+        descKey: 'services.catalogsDesc',
+        featuresCount: 5,
+        featuresPrefix: 'services.catalogs.f',
         gallery: [
             'https://images.unsplash.com/photo-1544233726-9f1d2b27be8b?auto=format&fit=crop&q=80&w=800',
             'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&q=80&w=800'
@@ -27,8 +29,9 @@ const servicesData: Record<string, any> = {
     'animation': {
         titleKey: 'services.animation',
         image: 'https://images.unsplash.com/photo-1740174459694-4da6669ef2b0?auto=format&fit=crop&q=80&w=1200',
-        fullDesc: 'Bringing ideas to life through movement. Our motion graphics and animation services transform complex concepts into engaging visual experiences.',
-        features: ['2D/3D Animation', 'Motion Graphics', 'Explainer Videos', 'Logo Animation', 'Character Design'],
+        descKey: 'services.animationDesc',
+        featuresCount: 5,
+        featuresPrefix: 'services.animation.f',
         gallery: [
             'https://images.unsplash.com/photo-1550745165-9bc0b252723f?auto=format&fit=crop&q=80&w=800',
             'https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=800'
@@ -40,6 +43,7 @@ export function ServiceDetailPage() {
     const navigate = useNavigate();
     const { id } = useParams();
     const { t, language } = useLanguage();
+    const isAr = language === 'ar';
     const service = id ? servicesData[id] : null;
 
     const handleBack = (e: React.MouseEvent) => {
@@ -49,48 +53,53 @@ export function ServiceDetailPage() {
 
     if (!service) {
         return (
-            <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white p-6">
-                <h1 className="text-4xl font-bold mb-6">Service Not Found</h1>
-                <a href="#" onClick={handleBack} className="text-[#9B8A5E] hover:underline cursor-pointer">Back to Home</a>
+            <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white p-6" dir={isAr ? 'rtl' : 'ltr'}>
+                <h1 className="text-4xl font-bold mb-6">{isAr ? 'الخدمة غير موجودة' : 'Service Not Found'}</h1>
+                <a href="#" onClick={handleBack} className="text-[#9B8A5E] hover:underline cursor-pointer">
+                    {isAr ? 'العودة للرئيسية' : 'Back to Home'}
+                </a>
             </div>
         );
     }
 
+    // Generate features array dynamically from translations
+    const features = Array.from({ length: service.featuresCount }, (_, i) => t(`${service.featuresPrefix}${i + 1}`));
+
     return (
-        <div className="min-h-screen bg-[#0a0a0a] text-white pt-24 pb-20">
+        <div className="min-h-screen bg-[#0a0a0a] text-white pt-24 pb-20" dir={isAr ? 'rtl' : 'ltr'}>
             <div className="container mx-auto px-6">
                 {/* Back Button */}
                 <a
                     href="#"
                     onClick={handleBack}
-                    className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors cursor-pointer group"
                 >
-                    <ChevronLeft size={20} />
-                    <span>{language === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}</span>
+                    <ChevronLeft size={20} className={`${isAr ? 'rotate-180 group-hover:translate-x-1' : 'group-hover:-translate-x-1'} transition-transform`} />
+                    <span>{t('contact.breadcrumbHome')}</span>
                 </a>
 
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
-                    {/* Left: Content */}
+                    {/* Left/Right Column based on language direction is handled by dir="rtl" */}
                     <motion.div
-                        initial={{ opacity: 0, x: -30 }}
+                        initial={{ opacity: 0, x: isAr ? 30 : -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                     >
                         <span className="text-[#9B8A5E] text-sm tracking-[0.4em] uppercase font-bold mb-6 block">
-                            {language === 'ar' ? 'الخدمة المميزة' : 'PREMIUM SERVICE'}
+                            {t('services.detail.premium')}
                         </span>
                         <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
                             {t(service.titleKey)}
                         </h1>
                         <p className="text-white/70 text-lg md:text-xl leading-relaxed mb-10 font-light max-w-2xl">
-                            {service.fullDesc}
+                            {t(service.descKey)}
                         </p>
 
                         <div className="space-y-4 mb-12">
-                            <h3 className="text-xl font-bold mb-6">{language === 'ar' ? 'ماذا نقدم:' : 'What We Offer:'}</h3>
+                            <h3 className="text-xl font-bold mb-6">{t('services.detail.whatWeOffer')}</h3>
                             <div className="grid sm:grid-cols-2 gap-4">
-                                {service.features.map((feature: string, idx: number) => (
-                                    <div key={idx} className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                                {features.map((feature: string, idx: number) => (
+                                    <div key={idx} className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10 hover:border-[#9B8A5E]/40 transition-colors">
                                         <CheckCircle2 size={18} className="text-[#9B8A5E] shrink-0" />
                                         <span className="text-white/80 text-sm font-medium">{feature}</span>
                                     </div>
@@ -103,12 +112,12 @@ export function ServiceDetailPage() {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <span>{language === 'ar' ? 'اطلب الخدمة الآن' : 'Request Service'}</span>
-                            <ArrowRight size={20} className={`transition-transform duration-300 group-hover:translate-x-2`} />
+                            <span>{t('services.detail.requestNow')}</span>
+                            <ArrowRight size={20} className={`${isAr ? 'rotate-180 group-hover:-translate-x-2' : 'group-hover:translate-x-2'} transition-transform duration-300`} />
                         </motion.button>
                     </motion.div>
 
-                    {/* Right: Featured Image & Gallery */}
+                    {/* Image Column */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}

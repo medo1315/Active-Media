@@ -57,38 +57,60 @@ const teamMembers = [
 
 export function Team() {
   const { language, t } = useLanguage();
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(teamMembers.length);
   const [isHovered, setIsHovered] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(true);
+  const [dimensions, setDimensions] = useState({ cardWidth: 200, gap: 24 });
 
-  const cardWidth = 200;
-  const gap = 24;
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) {
+        setDimensions({ cardWidth: 160, gap: 16 });
+      } else if (window.innerWidth < 1024) {
+        setDimensions({ cardWidth: 180, gap: 20 });
+      } else {
+        setDimensions({ cardWidth: 200, gap: 24 });
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const { cardWidth, gap } = dimensions;
 
   // Tripling the list for seamless infinite loop
   const displayMembers = [...teamMembers, ...teamMembers, ...teamMembers];
 
   const nextSlide = () => {
+    setIsTransitioning(true);
     setCurrentIndex((prev) => prev + 1);
   };
 
   const prevSlide = () => {
+    setIsTransitioning(true);
     setCurrentIndex((prev) => prev - 1);
   };
 
   useEffect(() => {
-    // If we've reached the end of our virtual sequence, snap back to the middle
-    if (currentIndex >= teamMembers.length) {
-      setTimeout(() => {
+    // Seamless snap back logic
+    // We are working with 3 copies: indices 0-7, 8-15, 16-23
+    // We stay within 8-15 for the "main" viewing.
+    if (currentIndex >= teamMembers.length * 2) {
+      // Reached start of 3rd copy, snap back to start of 2nd copy
+      const timer = setTimeout(() => {
         setIsTransitioning(false);
-        setCurrentIndex(0);
-      }, 800); // Wait for animation duration
-    } else if (currentIndex < 0) {
-      setTimeout(() => {
+        setCurrentIndex(teamMembers.length);
+      }, 700); // slightly before animation ends to be safe
+      return () => clearTimeout(timer);
+    } else if (currentIndex < teamMembers.length) {
+      // Reached 1st copy, snap to corresponding position in 2nd copy
+      const timer = setTimeout(() => {
         setIsTransitioning(false);
-        setCurrentIndex(teamMembers.length - 1);
-      }, 800);
-    } else {
-      setIsTransitioning(true);
+        setCurrentIndex(currentIndex + teamMembers.length);
+      }, 700);
+      return () => clearTimeout(timer);
     }
   }, [currentIndex]);
 
@@ -100,39 +122,68 @@ export function Team() {
     return () => clearInterval(interval);
   }, [isHovered]);
 
-  return (
-    <section id="team" className="py-24 bg-[#0a0a0a] overflow-hidden">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-          {/* Left Column: Title Control */}
-          <div className="lg:w-1/4 flex flex-col items-center lg:items-start text-center lg:text-left z-20 bg-[#0a0a0a] py-6">
+  // Minimum swipe distance in pixels
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      nextSlide();
+    } else if (isRightSwipe) {
+      prevSlide();
+    }
+  };
+
+  return (
+    <section id="team" className="py-16 md:py-24 bg-[#0a0a0a] overflow-hidden">
+      <div className="container mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+
+          {/* Left Column: Title Control - Centered vertically on web */}
+          <div className="lg:w-1/4 w-full flex flex-col items-center lg:items-start text-center lg:text-left z-20 bg-[#0a0a0a] py-4 lg:py-6">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
+              className="w-full"
             >
-              <p className="text-[#9B8A5E] text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold mb-4 opacity-100">
+              <p className="text-[#9B8A5E] text-[10px] md:text-xs tracking-[0.4em] md:tracking-[0.5em] uppercase font-bold mb-2 md:mb-4 opacity-100">
                 {language === 'ar' ? 'فريقنا المبدع' : 'OUR CREATIVE'}
               </p>
-              <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-8">
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-6 md:mb-10">
                 {language === 'ar' ? 'الفريق' : 'TEAM'}
               </h2>
 
-              {/* Navigation Arrows */}
-              <div className="flex gap-2 justify-center lg:justify-start">
+              {/* Navigation Arrows - Desktop Only */}
+              <div className="hidden lg:flex gap-3 justify-center lg:justify-start">
                 <button
                   onClick={prevSlide}
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#9B8A5E] hover:text-black hover:border-[#9B8A5E] transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#9B8A5E] hover:text-black hover:border-[#9B8A5E] transition-all duration-300 group"
                 >
-                  <ChevronLeft size={18} />
+                  <ChevronLeft size={20} className="transition-transform group-hover:-translate-x-0.5" />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#9B8A5E] hover:text-black hover:border-[#9B8A5E] transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#9B8A5E] hover:text-black hover:border-[#9B8A5E] transition-all duration-300 group"
                 >
-                  <ChevronRight size={18} />
+                  <ChevronRight size={20} className="transition-transform group-hover:translate-x-0.5" />
                 </button>
               </div>
             </motion.div>
@@ -143,6 +194,9 @@ export function Team() {
             className="lg:w-3/4 w-full relative"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
+            onTouchStart={onTouchStart}
+            onTouchMove={onTouchMove}
+            onTouchEnd={onTouchEnd}
           >
             <div className="overflow-hidden py-6">
               <motion.div
@@ -182,9 +236,25 @@ export function Team() {
               </motion.div>
             </div>
 
-            {/* Premium Overlay Shadows */}
-            <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent z-10 pointer-events-none" />
-            <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent z-10 pointer-events-none" />
+            {/* Navigation Arrows - Mobile Only */}
+            <div className="flex lg:hidden gap-6 justify-center mt-4 mb-2">
+              <button
+                onClick={prevSlide}
+                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white active:bg-[#9B8A5E] active:text-black transition-all duration-200"
+              >
+                <ChevronLeft size={24} />
+              </button>
+              <button
+                onClick={nextSlide}
+                className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white active:bg-[#9B8A5E] active:text-black transition-all duration-200"
+              >
+                <ChevronRight size={24} />
+              </button>
+            </div>
+
+            {/* Premium Overlay Shadows - Reduced on mobile */}
+            <div className="absolute top-0 left-0 w-8 md:w-24 h-full bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent z-10 pointer-events-none" />
+            <div className="absolute top-0 right-0 w-8 md:w-24 h-full bg-gradient-to-l from-[#0a0a0a] via-[#0a0a0a]/50 to-transparent z-10 pointer-events-none" />
           </div>
 
         </div>
