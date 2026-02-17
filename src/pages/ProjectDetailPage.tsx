@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ChevronLeft, ArrowRight, ExternalLink, Calendar, User } from 'lucide-react';
@@ -33,8 +33,14 @@ const projectsData: Record<string, any> = {
 };
 
 export function ProjectDetailPage() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const { language } = useLanguage();
+
+    const handleBack = (e: React.MouseEvent) => {
+        e.preventDefault();
+        navigate(-1);
+    };
 
     // For demo: find by slug or just default to stone-africa
     const project = id ? (projectsData[id] || projectsData['stone-africa']) : projectsData['stone-africa'];
@@ -43,10 +49,14 @@ export function ProjectDetailPage() {
         <div className="min-h-screen bg-[#0a0a0a] text-white pt-24 pb-20">
             <div className="container mx-auto px-6">
                 {/* Navigation */}
-                <Link to="/portfolio" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors">
+                <a
+                    href="#"
+                    onClick={handleBack}
+                    className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors cursor-pointer"
+                >
                     <ChevronLeft size={20} />
                     <span>{language === 'ar' ? 'العودة للمعرض' : 'Back to Portfolio'}</span>
-                </Link>
+                </a>
 
                 {/* Hero Section */}
                 <div className="relative aspect-[21/9] w-full overflow-hidden rounded-3xl mb-16 group">
@@ -110,7 +120,7 @@ export function ProjectDetailPage() {
                     >
                         <div className="space-y-6">
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-[#a3ae30]/20 flex items-center justify-center text-[#a3ae30]">
+                                <div className="w-12 h-12 rounded-2xl bg-[#9B8A5E]/20 flex items-center justify-center text-[#9B8A5E]">
                                     <User size={24} />
                                 </div>
                                 <div>
@@ -120,7 +130,7 @@ export function ProjectDetailPage() {
                             </div>
 
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-[#a3ae30]/20 flex items-center justify-center text-[#a3ae30]">
+                                <div className="w-12 h-12 rounded-2xl bg-[#9B8A5E]/20 flex items-center justify-center text-[#9B8A5E]">
                                     <Calendar size={24} />
                                 </div>
                                 <div>
@@ -130,7 +140,7 @@ export function ProjectDetailPage() {
                             </div>
 
                             <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-2xl bg-[#a3ae30]/20 flex items-center justify-center text-[#a3ae30]">
+                                <div className="w-12 h-12 rounded-2xl bg-[#9B8A5E]/20 flex items-center justify-center text-[#9B8A5E]">
                                     <ExternalLink size={24} />
                                 </div>
                                 <div>
@@ -151,7 +161,7 @@ export function ProjectDetailPage() {
                             </div>
                         </div>
 
-                        <button className="w-full py-5 bg-white text-black rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-[#a3ae30] hover:text-white transition-all group">
+                        <button className="w-full py-5 bg-white text-black rounded-2xl font-black flex items-center justify-center gap-3 hover:bg-[#9B8A5E] hover:text-white transition-all group">
                             <span>{language === 'ar' ? 'ابدأ مشروعك معنا' : 'Start Your Project'}</span>
                             <ArrowRight size={20} className="group-hover:translate-x-2 transition-transform" />
                         </button>

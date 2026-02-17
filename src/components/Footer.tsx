@@ -1,13 +1,15 @@
 import { Instagram, Facebook, Linkedin, Twitter, Magnet } from 'lucide-react';
 import { motion } from 'framer-motion';
 import logo from '../assets/30db22424ddeca550d6f82028b6980b8e2ce95d6.png';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export function Footer() {
+  const { t, language } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: Instagram, href: '#', label: 'Instagram' },
-    { icon: Facebook, href: '#', label: 'Facebook' },
+    { icon: Instagram, href: 'https://www.instagram.com/activemediaeg', label: 'Instagram' },
+    { icon: Facebook, href: 'https://www.facebook.com/ActiveMediaEg', label: 'Facebook' },
     { icon: Linkedin, href: '#', label: 'LinkedIn' },
     { icon: Twitter, href: '#', label: 'Twitter' }
   ];
@@ -45,33 +47,16 @@ export function Footer() {
                 <Magnet className="text-white" size={28} />
               </motion.div>
               <span className="text-2xl font-light text-white">
-                قوة الجذب
+                {t('footer.tagline')}
               </span>
             </motion.div>
             <p className="text-gray-400 max-w-2xl mx-auto leading-relaxed">
-              مثل المغناطيس، نجذب الجمهور من خلال محتوى استثنائي ونبني علاقات مستدامة من خلال التفاعل المستمر
+              {t('footer.description')}
             </p>
           </motion.div>
 
           <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <motion.div
-              className="text-center md:text-left"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <motion.img
-                src={logo}
-                alt="Active Media"
-                className="h-12 w-auto mb-3 mx-auto md:mx-0"
-                whileHover={{ scale: 1.05 }}
-              />
-              <div className="text-sm text-white/40">
-                {currentYear} © جميع الحقوق محفوظة
-              </div>
-            </motion.div>
-
+            {/* Social Icons - Now on the left */}
             <div className="flex gap-6">
               {socialLinks.map((social, index) => {
                 const Icon = social.icon;
@@ -101,6 +86,27 @@ export function Footer() {
                 );
               })}
             </div>
+
+            {/* Logo and Copyright - Now on the right */}
+            <motion.div
+              className="text-center md:text-right"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <motion.img
+                src={logo}
+                alt="Active Media"
+                className="h-12 w-auto mb-3 mx-auto md:ml-auto md:mr-0"
+                whileHover={{ scale: 1.05 }}
+              />
+              <div className="text-sm text-white/40">
+                {language === 'ar'
+                  ? `${currentYear} © ${t('footer.rights')}`
+                  : `© ${currentYear} ${t('footer.rights')}`}
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

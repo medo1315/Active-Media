@@ -1,41 +1,44 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { Target, Magnet, Users, Sparkles } from 'lucide-react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export function About() {
+  const { t } = useLanguage();
+
   const stats = [
-    { value: '+500', label: 'مشروع منجز' },
-    { value: '+200', label: 'عميل راضٍ' },
-    { value: '10+', label: 'سنوات خبرة' }
+    { value: '+500', label: t('about.stat1') },
+    { value: '+200', label: t('about.stat2') },
+    { value: '10+', label: t('about.stat3') }
   ];
 
   const brandPhilosophy = [
     {
       icon: Magnet,
-      title: 'قوة الجذب',
-      description: 'مثل المغناطيس، نجذب الجمهور من خلال محتوى مميز لا يُقاوم'
+      title: t('about.vision'),
+      description: t('about.visionText')
     },
     {
       icon: Target,
-      title: 'جمهور مستهدف',
-      description: 'نركز على جمهورك المثالي مع الانفتاح على فرص أوسع'
+      title: t('about.mission'),
+      description: t('about.missionText')
     },
     {
       icon: Users,
-      title: 'تفاعل اجتماعي',
-      description: 'نبني علاقات مستدامة من خلال التواصل المستمر'
+      title: t('about.values'),
+      description: t('about.valuesText')
     }
   ];
 
   return (
     <section id="about" className="py-32 bg-gradient-to-br from-[#1A1A1A] via-[#0D0D0D] to-[#1A1A1A] relative overflow-hidden">
       {/* Magnetic Circle Decorations */}
-      <motion.div 
+      <motion.div
         className="absolute top-20 right-20 opacity-5"
-        animate={{ 
+        animate={{
           scale: [1, 1.2, 1],
           rotate: [0, 180, 360]
         }}
-        transition={{ 
+        transition={{
           duration: 15,
           repeat: Infinity,
           ease: "linear"
@@ -50,13 +53,13 @@ export function About() {
         </svg>
       </motion.div>
 
-      <motion.div 
+      <motion.div
         className="absolute bottom-20 left-20 opacity-5"
-        animate={{ 
+        animate={{
           scale: [1, 1.1, 1],
           rotate: [0, -180, -360]
         }}
-        transition={{ 
+        transition={{
           duration: 20,
           repeat: Infinity,
           ease: "linear"
@@ -71,7 +74,7 @@ export function About() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-6xl mx-auto">
           {/* Brand Philosophy Section */}
-          <motion.div 
+          <motion.div
             className="text-center mb-24"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,13 +83,13 @@ export function About() {
           >
             <div className="inline-flex items-center gap-2 mb-6">
               <Sparkles className="text-white" size={24} />
-              <span className="text-sm tracking-widest text-gray-400 uppercase">فلسفتنا</span>
+              <span className="text-sm tracking-widest text-gray-400 uppercase">{t('philosophy.label')}</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-light mb-6 text-white">
-              قوة <span className="text-white">الجذب</span>
+              {t('about.vision')}
             </h2>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              شعارنا ليس مجرد رمز، بل قصة كاملة عن كيفية جذب الجمهور وبناء علاقات مستدامة
+              {t('philosophy.description')}
             </p>
           </motion.div>
 
@@ -112,7 +115,7 @@ export function About() {
                   </motion.div>
                   <h3 className="text-2xl font-light text-white mb-4">{item.title}</h3>
                   <p className="text-gray-400 leading-relaxed">{item.description}</p>
-                  
+
                   {/* Decorative magnetic effect */}
                   <motion.div
                     className="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-white opacity-0 group-hover:opacity-100"
@@ -133,31 +136,31 @@ export function About() {
 
           {/* Main About Content */}
           <div className="grid md:grid-cols-2 gap-16 items-center">
-            <motion.div 
+            <motion.div
               className="text-right"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="text-sm tracking-widest text-gray-400 uppercase">من نحن</span>
+              <span className="text-sm tracking-widest text-gray-400 uppercase">{t('about.label')}</span>
               <h2 className="text-5xl md:text-6xl font-light mt-4 mb-8 text-white">
-                Active <span className="text-white">Media</span>
+                {t('about.title')}
               </h2>
               <p className="text-xl text-gray-300 leading-relaxed font-light mb-6">
-                تأسست في عام 2018، Active Media هي وكالة إنتاج متخصصة في صناعة تجارب بصرية راقية تجذب الجمهور وتحتفظ به.
+                {t('about.description')}
               </p>
               <p className="text-lg text-gray-400 leading-relaxed font-light mb-4">
-                <span className="text-white font-normal">مثل المغناطيس،</span> نجذب انتباه جمهورك من خلال محتوى استثنائي يجمع بين الإنتاج السينمائي والتصميم الاحترافي.
+                {t('about.description2')}
               </p>
               <p className="text-lg text-gray-400 leading-relaxed font-light">
-                نركز على جمهورك المستهدف مع الانفتاح على فرص أوسع، ونبني علاقات مستدامة من خلال <span className="text-gray-300">التفاعل المستمر</span> والجودة التي تتحدث عن نفسها.
+                {t('about.description3')}
               </p>
             </motion.div>
 
             <div className="space-y-8">
               {stats.map((stat, index) => (
-                <motion.div 
+                <motion.div
                   key={index}
                   className="border-t border-white/20 pt-6 group cursor-pointer"
                   initial={{ opacity: 0, y: 20 }}
@@ -166,7 +169,7 @@ export function About() {
                   transition={{ duration: 0.6, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   whileHover={{ x: 10, borderColor: 'rgba(255, 255, 255, 0.4)' }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="text-5xl font-light mb-2 text-white relative"
                     initial={{ opacity: 0, scale: 0.5 }}
                     whileInView={{ opacity: 1, scale: 1 }}

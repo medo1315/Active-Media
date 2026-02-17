@@ -18,12 +18,26 @@ import { Toaster } from 'sonner';
 
 
 function AppContent() {
-
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-[#0D0D0D] text-white" dir="ltr">
-      <Toaster position="top-center" richColors />
+      <Toaster
+        position="top-center"
+        richColors
+        toastOptions={{
+          style: {
+            background: 'rgba(20, 20, 20, 0.7)',
+            backdropFilter: 'blur(12px) saturate(160%)',
+            WebkitBackdropFilter: 'blur(12px) saturate(160%)',
+            border: '1px solid rgba(255, 255, 255, 0.08)',
+            color: '#fff',
+            borderRadius: '16px',
+            boxShadow: '0 8px 32px 0 rgba(0, 0, 0, 0.8)',
+            fontFamily: 'Gotham Pro, sans-serif'
+          },
+        }}
+      />
       <Header onOpenContact={() => setIsContactModalOpen(true)} />
 
       <Routes>

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
+import { toast } from 'sonner';
 
 type Language = 'ar' | 'en';
 
@@ -36,24 +37,24 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
 
     // Services Section
     'services.label': 'خدماتنا',
-    'services.title': 'SERVICES',
-    'services.subtitle': 'ALL INCLUSIVE ADVERTISING SERVICES',
+    'services.title': 'الخدمات',
+    'services.subtitle': 'خدمات إعلانية شاملة',
     'services.description': 'نقدم مجموعة متكاملة من خدمات الإنتاج المرئي بأعلى معايير الجودة',
 
     // Service Items
     'services.branding': 'الهوية البصرية',
     'services.brandingDesc': 'تصميم هوية بصرية مميزة لعلامتك التجارية',
-    'services.catalogs': 'Catalogs & Profiles',
-    'services.animation': 'Animation & Motion Graphics',
-    'services.webapp': 'Web & Mobile Application',
-    'services.social': 'Social Media',
-    'services.photography': 'Photography & Video Shooting',
-    'services.booths': 'Booths & Exhibitions',
-    'services.giveaways': 'Giveaways & Production',
-    'services.food': 'Food & Beverage Reel Production',
-    'services.industrial': 'Industrial Documentaries',
-    'services.packaging': 'Packaging Design Services',
-    'services.events': 'Events Covering Video Production',
+    'services.catalogs': 'الكتالوجات وبروفايلات الشركات',
+    'services.animation': 'الرسوم المتحركة والموشن جرافيك',
+    'services.webapp': 'تطبيقات الويب والجوال',
+    'services.social': 'وسائل التواصل الاجتماعي',
+    'services.photography': 'التصوير الفوتوغرافي والفيديو',
+    'services.booths': 'أجنحة المعارض والمنصات',
+    'services.giveaways': 'الهدايا الدعائية والإنتاج',
+    'services.food': 'إنتاج فيديوهات الأطعمة والمشروبات',
+    'services.industrial': 'الوثائقيات الصناعية',
+    'services.packaging': 'خدمات تصميم التغليف',
+    'services.events': 'تغطية الفعاليات وإنتاج الفيديو',
 
     'services.items.video.title': 'إنتاج الفيديو',
     'services.items.video.description': 'إنتاج فيديو احترافي من البداية للنهاية مع تركيز على الجودة والإبداع',
@@ -80,15 +81,15 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
 
     // Portfolio Section
     'portfolio.label': 'أعمالنا',
-    'portfolio.title': 'PROJECTS',
-    'portfolio.subtitle': 'QUALITY & VARIETY',
+    'portfolio.title': 'المشاريع',
+    'portfolio.subtitle': 'الجودة والتنوع',
     'portfolio.description': 'مجموعة مختارة من أفضل أعمالنا التي حققت نجاحاً باهراً',
     'portfolio.all': 'الكل',
     'portfolio.video': 'فيديو',
     'portfolio.photography': 'تصوير',
     'portfolio.motion': 'تصميم',
     'portfolio.viewProject': 'عرض المشروع',
-    'portfolio.readMore': 'READ MORE',
+    'portfolio.readMore': 'اقرأ المزيد',
     'portfolio.categories.all': 'الكل',
     'portfolio.categories.video': 'فيديو',
     'portfolio.categories.photography': 'تصوير',
@@ -128,20 +129,20 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
 
     // Clients Section
     'clients.label': 'شركاؤنا',
-    'clients.title': 'CLIENTS',
-    'clients.subtitle': 'OUR HAPPY & SATISFIED',
+    'clients.title': 'العملاء',
+    'clients.subtitle': 'عملاؤنا السعداء والراضون',
     'clients.description': 'نتعاون مع علامات تجارية رائدة لتقديم محتوى بصري استثنائي',
     'clients.more': 'وأكثر من 200+ علامة تجارية أخرى',
 
     // Testimonials Section
     'testimonials.label': 'آراء العملاء',
-    'testimonials.title': 'TESTIMONIALS',
-    'testimonials.subtitle': 'ENDORSEMENT TWEETS',
+    'testimonials.title': 'آراء العملاء',
+    'testimonials.subtitle': 'تغريدات التوصية',
     'testimonials.description': 'ماذا يقول عملاؤنا عن تجربتهم معنا',
 
     // Team Section
     'team.label': 'OUR CREATIVE',
-    'team.title': 'TEAM',
+    'team.title': 'الفريق',
     'team.description': 'فريق مبدع من المتخصصين في الإنتاج البصري والتسويق',
     'team.member1.name': 'Mohamed Ashraf',
     'team.member1.role': 'Creative Team',
@@ -207,7 +208,7 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
     'footer.quickLinks': 'روابط سريعة',
     'footer.services': 'خدماتنا',
     'footer.contact': 'تواصل معنا',
-    'footer.rights': '© جميع الحقوق محفوظة',
+    'footer.rights': 'جميع الحقوق محفوظة',
     'footer.address': 'القاهرة، مصر',
   },
   en: {
@@ -306,7 +307,7 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
     'about.description2': 'Like a magnet, we attract your audience\'s attention through exceptional content that combines cinematic production and professional design.',
     'about.description3': 'We focus on your target audience while remaining open to broader opportunities, building sustainable relationships through continuous engagement and quality that speaks for itself.',
     'about.vision': 'Power of Attraction',
-    'about.visionText': 'Like a magnet, we attract audiences through irresistible distinctive content',
+    'about.visionText': 'Like a magnet, we attract the audience through exceptional content and build sustainable relationships through continuous interaction',
     'about.mission': 'Targeted Audience',
     'about.missionText': 'We focus on your ideal audience while remaining open to broader opportunities',
     'about.values': 'Social Engagement',
@@ -404,11 +405,11 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
 
     // Footer
     'footer.tagline': 'Power of Attraction',
-    'footer.description': 'Like a magnet, we attract audiences through exceptional content and build sustainable relationships through continuous engagement',
+    'footer.description': 'Like a magnet, we attract the audience through exceptional content and build sustainable relationships through continuous interaction',
     'footer.quickLinks': 'Quick Links',
     'footer.services': 'Our Services',
     'footer.contact': 'Contact Us',
-    'footer.rights': '© All Rights Reserved',
+    'footer.rights': 'All Rights Reserved.',
     'footer.address': 'Cairo, Egypt',
   }
 };
@@ -416,10 +417,14 @@ const translations: Record<'ar' | 'en', Record<string, string>> = {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguage] = useState<Language>('ar');
+  const [language, setLanguage] = useState<Language>('en');
 
   const toggleLanguage = () => {
-    setLanguage(prev => prev === 'ar' ? 'en' : 'ar');
+    setLanguage(prev => {
+      const next = prev === 'ar' ? 'en' : 'ar';
+      toast.success(next === 'ar' ? 'تم تغيير اللغة إلى العربية' : 'Language changed to English');
+      return next;
+    });
   };
 
   const t = (key: string): string => {

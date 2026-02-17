@@ -22,7 +22,7 @@ export function ContactPage() {
                     <div className="flex items-center gap-2 text-sm text-gray-500 mb-4 uppercase tracking-wider">
                         <span>Home</span>
                         <span>/</span>
-                        <span className="text-[#a3ae30]">Talk About Your Project.</span>
+                        <span className="text-[#9B8A5E]">Talk About Your Project.</span>
                     </div>
                     <h2 className="text-4xl md:text-6xl font-bold uppercase tracking-wide">
                         Let's <br />
@@ -108,13 +108,13 @@ export function ContactPage() {
 
                         <div className="space-y-8">
                             <div>
-                                <h4 className="text-xs font-bold tracking-widest text-[#a3ae30] mb-4 uppercase">Let's Talk.</h4>
+                                <h4 className="text-xs font-bold tracking-widest text-[#9B8A5E] mb-4 uppercase">Let's Talk.</h4>
                                 <p className="text-gray-400 mb-1 hover:text-white transition-colors cursor-pointer">Hello@dawayertstudio.com</p>
                                 <p className="text-gray-400 hover:text-white transition-colors cursor-pointer">+201112922926</p>
                             </div>
 
                             <div>
-                                <h4 className="text-xs font-bold tracking-widest text-[#a3ae30] mb-4 uppercase">Visit Us.</h4>
+                                <h4 className="text-xs font-bold tracking-widest text-[#9B8A5E] mb-4 uppercase">Visit Us.</h4>
                                 <p className="text-gray-400">
                                     Villa 67, Industrial Area, New Cairo, Cairo Governorate.
                                 </p>
@@ -122,13 +122,13 @@ export function ContactPage() {
 
                             {/* Social Icons */}
                             <div className="flex items-center gap-6 pt-8">
-                                <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 text-white group">
+                                <a href="https://www.facebook.com/ActiveMediaEg" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 text-white group">
                                     <Facebook size={14} />
                                 </a>
                                 <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 text-white group">
                                     <Youtube size={14} />
                                 </a>
-                                <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 text-white group">
+                                <a href="https://www.instagram.com/activemediaeg" target="_blank" rel="noopener noreferrer" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 text-white group">
                                     <Instagram size={14} />
                                 </a>
                                 <a href="#" className="w-8 h-8 flex items-center justify-center rounded-full bg-white/5 hover:bg-white hover:text-black transition-all duration-300 text-white group">

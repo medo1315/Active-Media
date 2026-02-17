@@ -113,7 +113,7 @@ export function Team() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <p className="text-[#a3ae30] text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold mb-4 opacity-100">
+              <p className="text-[#9B8A5E] text-[10px] md:text-xs tracking-[0.5em] uppercase font-bold mb-4 opacity-100">
                 {language === 'ar' ? 'فريقنا المبدع' : 'OUR CREATIVE'}
               </p>
               <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-8">
@@ -124,13 +124,13 @@ export function Team() {
               <div className="flex gap-2 justify-center lg:justify-start">
                 <button
                   onClick={prevSlide}
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#a3ae30] hover:text-black hover:border-[#a3ae30] transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#9B8A5E] hover:text-black hover:border-[#9B8A5E] transition-all duration-300"
                 >
                   <ChevronLeft size={18} />
                 </button>
                 <button
                   onClick={nextSlide}
-                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#a3ae30] hover:text-black hover:border-[#a3ae30] transition-all duration-300"
+                  className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#9B8A5E] hover:text-black hover:border-[#9B8A5E] transition-all duration-300"
                 >
                   <ChevronRight size={18} />
                 </button>
@@ -173,7 +173,7 @@ export function Team() {
                       <h3 className="text-white text-base font-bold leading-tight mb-1 truncate">
                         {t(member.nameKey)}
                       </h3>
-                      <p className="text-[#a3ae30]/80 text-[10px] font-bold uppercase tracking-widest">
+                      <p className="text-[#9B8A5E]/80 text-[10px] font-bold uppercase tracking-widest">
                         {t(member.roleKey)}
                       </p>
                     </div>

@@ -68,7 +68,7 @@ export function Clients() {
           transition={{ duration: 0.6 }}
           className="mb-20"
         >
-          <h3 className="text-[#a3ae30] text-sm md:text-base tracking-[0.5em] uppercase mb-4 font-light">
+          <h3 className="text-[#9B8A5E] text-sm md:text-base tracking-[0.5em] uppercase mb-4 font-light">
             {language === 'ar' ? 'عملائنا السعداء' : 'OUR HAPPY & SATISFIED'}
           </h3>
           <h2 className="text-5xl md:text-7xl font-bold text-white uppercase tracking-tight">

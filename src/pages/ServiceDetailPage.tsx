@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../contexts/LanguageContext';
 import { ChevronLeft, CheckCircle2, ArrowRight } from 'lucide-react';
@@ -37,15 +37,21 @@ const servicesData: Record<string, any> = {
 };
 
 export function ServiceDetailPage() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const { t, language } = useLanguage();
     const service = id ? servicesData[id] : null;
+
+    const handleBack = (e: React.MouseEvent) => {
+        e.preventDefault();
+        navigate(-1);
+    };
 
     if (!service) {
         return (
             <div className="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center text-white p-6">
                 <h1 className="text-4xl font-bold mb-6">Service Not Found</h1>
-                <Link to="/" className="text-[#a3ae30] hover:underline">Back to Home</Link>
+                <a href="#" onClick={handleBack} className="text-[#9B8A5E] hover:underline cursor-pointer">Back to Home</a>
             </div>
         );
     }
@@ -54,10 +60,14 @@ export function ServiceDetailPage() {
         <div className="min-h-screen bg-[#0a0a0a] text-white pt-24 pb-20">
             <div className="container mx-auto px-6">
                 {/* Back Button */}
-                <Link to="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors">
+                <a
+                    href="#"
+                    onClick={handleBack}
+                    className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors cursor-pointer"
+                >
                     <ChevronLeft size={20} />
                     <span>{language === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}</span>
-                </Link>
+                </a>
 
                 <div className="grid lg:grid-cols-2 gap-16 items-start">
                     {/* Left: Content */}
@@ -66,7 +76,7 @@ export function ServiceDetailPage() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8 }}
                     >
-                        <span className="text-[#a3ae30] text-sm tracking-[0.4em] uppercase font-bold mb-6 block">
+                        <span className="text-[#9B8A5E] text-sm tracking-[0.4em] uppercase font-bold mb-6 block">
                             {language === 'ar' ? 'الخدمة المميزة' : 'PREMIUM SERVICE'}
                         </span>
                         <h1 className="text-5xl md:text-7xl font-black mb-8 leading-tight">
@@ -81,7 +91,7 @@ export function ServiceDetailPage() {
                             <div className="grid sm:grid-cols-2 gap-4">
                                 {service.features.map((feature: string, idx: number) => (
                                     <div key={idx} className="flex items-center gap-3 bg-white/5 p-4 rounded-xl border border-white/10">
-                                        <CheckCircle2 size={18} className="text-[#a3ae30] shrink-0" />
+                                        <CheckCircle2 size={18} className="text-[#9B8A5E] shrink-0" />
                                         <span className="text-white/80 text-sm font-medium">{feature}</span>
                                     </div>
                                 ))}
@@ -89,7 +99,7 @@ export function ServiceDetailPage() {
                         </div>
 
                         <motion.button
-                            className="px-10 py-4 bg-[#a3ae30] text-black rounded-full font-bold hover:bg-[#c1ce3b] transition-all flex items-center gap-3 group"
+                            className="px-10 py-4 bg-[#9B8A5E] text-black rounded-full font-bold hover:bg-[#B5A27A] transition-all flex items-center gap-3 group"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
