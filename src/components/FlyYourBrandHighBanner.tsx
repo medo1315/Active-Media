@@ -42,7 +42,7 @@ export default function FlyYourBrandHighBanner() {
 const styles: Record<string, React.CSSProperties> = {
     wrap: {
         fontFamily:
-            'Poppins, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif',
+            'Gotham Pro, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif',
         padding: 16,
         background: "#0b0b0b",
         minHeight: "50vh", // Changed from 100vh to fit better in a page flow

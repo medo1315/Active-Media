@@ -55,7 +55,7 @@ export function ServiceDetailPage() {
             <div className="container mx-auto px-6">
                 {/* Back Button */}
                 <Link to="/" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors">
-                    <ChevronLeft size={20} className={language === 'ar' ? "rotate-180" : ""} />
+                    <ChevronLeft size={20} />
                     <span>{language === 'ar' ? 'العودة للرئيسية' : 'Back to Home'}</span>
                 </Link>
 
@@ -94,7 +94,7 @@ export function ServiceDetailPage() {
                             whileTap={{ scale: 0.95 }}
                         >
                             <span>{language === 'ar' ? 'اطلب الخدمة الآن' : 'Request Service'}</span>
-                            <ArrowRight size={20} className={`transition-transform duration-300 group-hover:translate-x-2 ${language === 'ar' ? 'rotate-180 group-hover:-translate-x-2' : ''}`} />
+                            <ArrowRight size={20} className={`transition-transform duration-300 group-hover:translate-x-2`} />
                         </motion.button>
                     </motion.div>
 

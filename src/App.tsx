@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { useLanguage } from './contexts/LanguageContext';
+
 import { Header } from './components/Header';
 import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
@@ -15,14 +15,14 @@ import { ProjectDetailPage } from './pages/ProjectDetailPage';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
 import { Toaster } from 'sonner';
-import './styles/globals.css';
+
 
 function AppContent() {
-  const { language } = useLanguage();
+
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0D0D0D] text-white" dir={language === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-[#0D0D0D] text-white" dir="ltr">
       <Toaster position="top-center" richColors />
       <Header onOpenContact={() => setIsContactModalOpen(true)} />
 

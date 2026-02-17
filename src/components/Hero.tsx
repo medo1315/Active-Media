@@ -24,7 +24,7 @@ export function Hero() {
       >
         <div style={{ lineHeight: 1, letterSpacing: "0.5px" }}>
           <div style={{ display: "flex", alignItems: "baseline", gap: 'clamp(8px, 1.5vw, 16px)', marginBottom: 6, justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 800, fontSize: "clamp(36px, 8vw, 90px)" }}>FLY</span>
+            <span style={{ fontFamily: 'Gotham Pro, sans-serif', fontWeight: 800, fontSize: "clamp(36px, 8vw, 90px)" }}>FLY</span>
             <span style={{
               fontFamily: 'Dancing Script, cursive',
               fontWeight: 700,
@@ -37,10 +37,10 @@ export function Hero() {
             }}>Your</span>
           </div>
           <div style={{ display: "flex", alignItems: "baseline", gap: 'clamp(12px, 2vw, 24px)', justifyContent: 'center' }}>
-            <span style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900, fontSize: "clamp(42px, 9vw, 110px)" }}>BRAND</span>
-            <span style={{ fontFamily: 'Poppins, sans-serif', fontWeight: 900, fontSize: "clamp(42px, 9vw, 110px)" }}>HIGH</span>
+            <span style={{ fontFamily: 'Gotham Pro, sans-serif', fontWeight: 900, fontSize: "clamp(42px, 9vw, 110px)" }}>BRAND</span>
+            <span style={{ fontFamily: 'Gotham Pro, sans-serif', fontWeight: 900, fontSize: "clamp(42px, 9vw, 110px)" }}>HIGH</span>
           </div>
-          <div style={{ marginTop: 16, fontWeight: 700, fontSize: "clamp(18px, 4vw, 32px)", opacity: 0.95, letterSpacing: "4px", fontFamily: 'Poppins, sans-serif', textAlign: "center" }}>
+          <div style={{ marginTop: 16, fontWeight: 700, fontSize: "clamp(18px, 4vw, 32px)", opacity: 0.95, letterSpacing: "4px", fontFamily: 'Gotham Pro, sans-serif', textAlign: "center" }}>
             WITH US.
           </div>
         </div>

@@ -126,13 +126,13 @@ export function Team() {
                   onClick={prevSlide}
                   className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#a3ae30] hover:text-black hover:border-[#a3ae30] transition-all duration-300"
                 >
-                  <ChevronLeft size={18} className={language === 'ar' ? "rotate-180" : ""} />
+                  <ChevronLeft size={18} />
                 </button>
                 <button
                   onClick={nextSlide}
                   className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-[#a3ae30] hover:text-black hover:border-[#a3ae30] transition-all duration-300"
                 >
-                  <ChevronRight size={18} className={language === 'ar' ? "rotate-180" : ""} />
+                  <ChevronRight size={18} />
                 </button>
               </div>
             </motion.div>
@@ -149,9 +149,7 @@ export function Team() {
                 className="flex"
                 style={{ gap: `${gap}px` }}
                 animate={{
-                  x: language === 'ar'
-                    ? (currentIndex * (cardWidth + gap))
-                    : -(currentIndex * (cardWidth + gap))
+                  x: -(currentIndex * (cardWidth + gap))
                 }}
                 transition={isTransitioning ? { duration: 0.8, ease: [0.4, 0, 0.2, 1] } : { duration: 0 }}
               >

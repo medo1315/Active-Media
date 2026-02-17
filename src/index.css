@@ -1,18 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Arizonia&family=Great+Vibes&family=Montserrat:wght@100..900&display=swap');
+@import url('https://fonts.cdnfonts.com/css/gotham-pro');
 @import "tailwindcss";
 
-@font-face {
-    font-family: 'Gotham Pro';
-    src: local('Gotham Pro'), local('GothamPro');
-    /* Fallback to Montserrat if not locally available */
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme {
     --font-sans: 'Gotham Pro', 'Montserrat', sans-serif;
-}
 
-
-@theme {
     --color-border: var(--border);
     --color-input: var(--input);
     --color-ring: var(--ring);
@@ -52,6 +46,16 @@
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
+    --radius-xl: calc(var(--radius) + 4px);
+
+    --color-chart-1: var(--chart-1);
+    --color-chart-2: var(--chart-2);
+    --color-chart-3: var(--chart-3);
+    --color-chart-4: var(--chart-4);
+    --color-chart-5: var(--chart-5);
+
+    --color-input-background: var(--input-background);
+    --color-switch-background: var(--switch-background);
 
     --animate-accordion-down: accordion-down 0.2s ease-out;
     --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -139,8 +143,6 @@
         --border: oklch(0.269 0 0);
         --input: oklch(0.269 0 0);
         --ring: oklch(0.439 0 0);
-        --font-weight-medium: 500;
-        --font-weight-normal: 400;
         --chart-1: oklch(0.488 0.243 264.376);
         --chart-2: oklch(0.696 0.17 162.48);
         --chart-3: oklch(0.769 0.188 70.08);
@@ -155,14 +157,78 @@
         --sidebar-border: oklch(0.269 0 0);
         --sidebar-ring: oklch(0.439 0 0);
     }
-}
 
-@layer base {
     * {
         @apply border-border outline-ring/50;
     }
 
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground font-sans;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/**
+ * Base typography.
+ */
+@layer base {
+    :where(:not(:has([class*=' text-']), :not(:has([class^='text-'])))) {
+        h1 {
+            font-size: var(--text-2xl);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h2 {
+            font-size: var(--text-xl);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h3 {
+            font-size: var(--text-lg);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        h4 {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        label {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        button {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-medium);
+            line-height: 1.5;
+        }
+
+        input {
+            font-size: var(--text-base);
+            font-weight: var(--font-weight-normal);
+            line-height: 1.5;
+        }
+    }
+}
+
+html {
+    font-size: var(--font-size);
+}
+
+@layer utilities {
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
     }
 }

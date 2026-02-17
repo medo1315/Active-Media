@@ -44,7 +44,7 @@ export function ProjectDetailPage() {
             <div className="container mx-auto px-6">
                 {/* Navigation */}
                 <Link to="/portfolio" className="inline-flex items-center gap-2 text-white/60 hover:text-white mb-12 transition-colors">
-                    <ChevronLeft size={20} className={language === 'ar' ? "rotate-180" : ""} />
+                    <ChevronLeft size={20} />
                     <span>{language === 'ar' ? 'العودة للمعرض' : 'Back to Portfolio'}</span>
                 </Link>
 

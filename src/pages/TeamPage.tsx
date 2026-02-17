@@ -62,17 +62,17 @@ export function TeamPage() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
       >
-        <div className={`flex items-center gap-2 text-sm ${language === 'ar' ? 'flex-row-reverse' : 'flex-row'}`}>
+        <div className="flex items-center gap-2 text-sm flex-row">
           <Link to="/">
             <motion.div
               className="flex items-center gap-2 text-white/40 hover:text-white/70 transition-colors group"
-              whileHover={{ x: language === 'ar' ? 3 : -3 }}
+              whileHover={{ x: -3 }}
             >
               <Home size={16} />
               <span className="tracking-wide">{language === 'ar' ? 'الرئيسية' : 'Home'}</span>
             </motion.div>
           </Link>
-          <ChevronRight size={16} className={`text-white/20 ${language === 'ar' ? 'rotate-180' : ''}`} />
+          <ChevronRight size={16} className="text-white/20" />
           <span className="text-white/70 tracking-wide">{language === 'ar' ? 'الفريق' : 'Team'}</span>
         </div>
       </motion.div>
